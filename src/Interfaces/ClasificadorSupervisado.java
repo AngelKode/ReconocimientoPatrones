@@ -15,4 +15,5 @@ import java.util.ArrayList;
 public interface ClasificadorSupervisado {
      public abstract void entrenar(ArrayList<Patron> instancias);
      public abstract ArrayList<Patron> clasificar(ArrayList<Patron> instancias);
+     public abstract double[] efectividadClasificador(ArrayList<Patron> asignados);
 }

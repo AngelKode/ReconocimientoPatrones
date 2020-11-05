@@ -23,7 +23,7 @@ public class MinimaDistancia implements ClasificadorSupervisado{
     @Override
     public void entrenar(ArrayList<Patron> instancias) {
         //Aqui obtenemos los promedios de cada clase para obtener los patrones representataivos
-        double[] vectorRepresentativo = new double[4];
+        double[] vectorRepresentativo = new double[3];
         int inicio = 0;
         //Recorremos el arreglo de patrones para obtener la suma de cada caracteristica de cada clase
         //y asi obtenemos los promedios de cada una
@@ -39,7 +39,7 @@ public class MinimaDistancia implements ClasificadorSupervisado{
              Patron patronRepresentativo = new Patron(instancias.get(posicionPatrones - 1).getClase(),"", vectorRepresentativo);
              this.representativos.add(patronRepresentativo);
              //Limpiamos el arreglo;
-             vectorRepresentativo = new double[4];
+             vectorRepresentativo = new double[3];
              inicio = posicionPatrones++;
           }else{
               
@@ -115,6 +115,24 @@ public class MinimaDistancia implements ClasificadorSupervisado{
         
         
         return ordenado;
+    }
+
+    @Override
+    public double[] efectividadClasificador(ArrayList<Patron> asignados) {
+        double cantidadAsignados = asignados.size();
+        double cantidadCorrectos = 0;
+        double datos[] = new double[2];
+        
+        for(int i = 0; i < cantidadAsignados; i++){
+        
+            if(asignados.get(i).getClase().equals(asignados.get(i).getClaseResultante())){
+                cantidadCorrectos++;
+            }
+            
+        }
+        datos[0] = (cantidadCorrectos * 100) / cantidadAsignados;
+        datos[1] = cantidadCorrectos;
+        return datos;
     }
     
 }
