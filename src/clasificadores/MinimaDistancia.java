@@ -85,7 +85,8 @@ public class MinimaDistancia implements ClasificadorSupervisado{
             //Ahora encontramos el de menor distancia
             distanciasObtenidas = ordenarArreglo(distanciasObtenidas);
             
-            patronesAsignados.add(new Patron(instancias.get(posicion).getClase(),distanciasObtenidas.get(0).getClaseObtenida(), instancias.get(posicion).getVectorC()));            
+            patronesAsignados.add(new Patron(instancias.get(posicion).getClase(),distanciasObtenidas.get(0).getClaseObtenida(), 
+                                                            instancias.get(posicion).getVectorC()));            
         }
         
         return patronesAsignados;
@@ -134,5 +135,16 @@ public class MinimaDistancia implements ClasificadorSupervisado{
         datos[1] = cantidadCorrectos;
         return datos;
     }
+
+    @Override
+    public void entrenar(String path) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public ArrayList<Patron> clasificar(ArrayList<Patron> instancias, int k) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
     
 }

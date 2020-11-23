@@ -5,6 +5,7 @@
  */
 package reconocimiento_patrones;
 
+import clasificadores.KNN;
 import clasificadores.MinimaDistancia;
 import data.LeerDatos;
 import data.Patron;
@@ -24,7 +25,9 @@ public class Reconocimiento_Patrones {
     public static void main(String[] args) throws IOException {
         // TODO code application logic here
         
+        /*
         ArrayList<Patron> patrones = LeerDatos.tokenizarDataSet();
+        
         
         //Entrenamos
         MinimaDistancia clasificador = new MinimaDistancia();
@@ -37,7 +40,21 @@ public class Reconocimiento_Patrones {
 
         //Obtenemos los clasificados
         ArrayList<Patron> clasificado = clasificador.clasificar(patronesIngresar);
-       
+        */
+        
+        KNN clasificador = new KNN();
+        
+        clasificador.entrenar("DataSets/diferentesEntrenadores.txt");
+        
+        ArrayList<Patron> patronesEntrenamiento = new ArrayList<>();
+        //Leemos los datos
+        patronesEntrenamiento = LeerDatos.obtenerDatos();
+
+        ArrayList<Patron> patronesAClasificar = LeerDatos.obtenerDatos();
+        //Obtenemos los clasificados
+        ArrayList<Patron> clasificado = clasificador.clasificar(patronesAClasificar,3);
+        
+        
         double datosObtenidos[] = new double[2];
         datosObtenidos = clasificador.efectividadClasificador(clasificado);
         System.out.println("Efectividad: " +datosObtenidos[0]+"%");
