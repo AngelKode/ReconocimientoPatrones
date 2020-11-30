@@ -7,6 +7,7 @@ package reconocimiento_patrones;
 
 import clasificadores.KNN;
 import clasificadores.MinimaDistancia;
+import clasificadores.NaiveBayes;
 import data.LeerDatos;
 import data.Patron;
 import java.io.IOException;
@@ -42,9 +43,11 @@ public class Reconocimiento_Patrones {
         ArrayList<Patron> clasificado = clasificador.clasificar(patronesIngresar);
         */
         
+        //KNN
+        /*
         KNN clasificador = new KNN();
         
-        clasificador.entrenar("DataSets/diferentesEntrenadores.txt");
+        clasificador.entrenar("DataSets/wine.txt");
         
         ArrayList<Patron> patronesEntrenamiento = new ArrayList<>();
         //Leemos los datos
@@ -59,7 +62,22 @@ public class Reconocimiento_Patrones {
         datosObtenidos = clasificador.efectividadClasificador(clasificado);
         System.out.println("Efectividad: " +datosObtenidos[0]+"%");
         System.out.println("Elementos asignados correctamente:"+datosObtenidos[1]);
-
+        */
+        
+        //NaiveBayes
+        
+        NaiveBayes bayes = new NaiveBayes();
+        
+        ArrayList<Patron> entrenadores = LeerDatos.tokenizarDataSet(false);
+        //Le mandamos las instancias con las que vamos a entrenar
+        bayes.entrenar(entrenadores);
+        
+        ArrayList<Patron> a_clasificar = LeerDatos.tokenizarDataSet(false);
+        //Clasificamos los objetos que pasamos como parámetro
+        a_clasificar = bayes.clasificar(a_clasificar);
+        
+        System.out.println("Clasificados correctamente: " + bayes.efectividadClasificador(a_clasificar)[1]);
+        System.out.println("Efectividad: "+bayes.efectividadClasificador(a_clasificar)[0]+"%");
     }
     
 }
