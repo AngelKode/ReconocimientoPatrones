@@ -93,7 +93,7 @@ public class LeerDatos{
             ArrayList<Patron> patrones = new ArrayList<>();
             
             //Obtenemos el archivo
-            FileReader fileDataSetIris = new FileReader("DataSets/datosIngresados.txt");
+            FileReader fileDataSetIris = new FileReader("DataSets/wine.txt");
             BufferedReader buffer = new BufferedReader(fileDataSetIris);
             
             //Ahora leemos el archivo
@@ -106,7 +106,7 @@ public class LeerDatos{
             
             //Ahora guardamos los datos en el ArrayList de Patrones
             int contadorDatos = 0;
-            int tamañoVector = 3;
+            int tamañoVector = 13;
             double[] vectorCaracteristico = new double[tamañoVector];
             String clase = "";
             

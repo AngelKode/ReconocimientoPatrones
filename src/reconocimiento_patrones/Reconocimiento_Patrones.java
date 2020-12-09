@@ -5,6 +5,7 @@
  */
 package reconocimiento_patrones;
 
+import clasificadores.CMeans;
 import clasificadores.KNN;
 import clasificadores.MinimaDistancia;
 import clasificadores.NaiveBayes;
@@ -65,7 +66,7 @@ public class Reconocimiento_Patrones {
         */
         
         //NaiveBayes
-        
+        /*
         NaiveBayes bayes = new NaiveBayes();
         
         ArrayList<Patron> entrenadores = LeerDatos.tokenizarDataSet(false);
@@ -78,6 +79,17 @@ public class Reconocimiento_Patrones {
         
         System.out.println("Clasificados correctamente: " + bayes.efectividadClasificador(a_clasificar)[1]);
         System.out.println("Efectividad: "+bayes.efectividadClasificador(a_clasificar)[0]+"%");
+                
+        */
+        
+        //C-Means
+        ArrayList<Patron> clusters = LeerDatos.obtenerDatos(true);
+        CMeans cmeans = new CMeans(clusters, 3);
+        cmeans.clasificar();
+        
+        double[] c = cmeans.efectividadClasificador();
+        System.out.println(c[0]+"%");
+        System.out.println(c[1]+"clasificados correctamente");
     }
     
 }
